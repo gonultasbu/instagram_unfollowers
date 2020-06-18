@@ -2,6 +2,7 @@ from instagram_private_api import Client, ClientCompatPatch
 import numpy as np 
 import time
 import getpass 
+import sys
 
 def list_diff(li1, li2): 
     li_dif = [i for i in li1 + li2 if i not in li1] 
@@ -10,12 +11,12 @@ def list_diff(li1, li2):
 print("\n \nIMPORTANT DISCLAIMER: DO NOT USE THIS TOOL TOO FREQUENTLY (MORE THAN SEVERAL TIMES IN A MINUTE), YOUR ACCOUNT MIGHT GET FLAGGED! \n \n ")
 
 USER_NAME = input("What is your instagram username? \n")
-PASSWORD = getpass.getpass(prompt='What is your instagram password? (Your input is hidden, just type and press enter.) \n')
+PASSWORD = getpass.getpass(prompt='What is your instagram password? (Your input might not appear on console, just type and press enter.) \n')
 
 try: 
     api = Client(USER_NAME, PASSWORD)
 except:
-    exit('Login unsucessful, wrong password?')
+    sys.exit('Login unsucessful, wrong password?')
 
 results = api.feed_timeline()
 rnk_token = api.generate_uuid()
@@ -53,3 +54,5 @@ print(np.sort(list_diff(fwers_list_flat, fwing_list_flat)))
 print('_________________________________________')
 print('Here are the followers you are not following! \n\n')
 print(np.sort(list_diff(fwing_list_flat, fwers_list_flat)))
+
+os.system("pause")
