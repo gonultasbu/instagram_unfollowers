@@ -3,6 +3,7 @@ import numpy as np
 import time
 import getpass 
 import sys
+import os 
 
 def list_diff(li1, li2): 
     li_dif = [i for i in li1 + li2 if i not in li1] 
@@ -11,7 +12,7 @@ def list_diff(li1, li2):
 print("\n \nIMPORTANT DISCLAIMER: DO NOT USE THIS TOOL TOO FREQUENTLY (MORE THAN SEVERAL TIMES IN A MINUTE), YOUR ACCOUNT MIGHT GET FLAGGED! \n \n ")
 
 USER_NAME = input("What is your instagram username? \n")
-PASSWORD = getpass.getpass(prompt='What is your instagram password? (Your input might not appear on console, just type and press enter.) \n')
+PASSWORD = getpass.getpass(prompt='What is your insbtagram password? (Your input might not appear on console, just type and press enter.) \n')
 
 try: 
     api = Client(USER_NAME, PASSWORD)
@@ -28,7 +29,7 @@ fwing_list = []
 fwers_list = []
 fwing_list.append(np.sort([fwing['users'][idx]['username'] for idx in np.arange(len(fwing['users']))]))
 fwers_list.append(np.sort([fwers['users'][idx]['username'] for idx in np.arange(len(fwers['users']))]))
-fwing_nmid = fwing['next_max_id']
+fwing_nmid = fwing.get('next_max_id')
 fwers_nmid = fwers['next_max_id']
 
 print('Parsing the following list! Please be patient. There is a delay to prevent your account from getting flagged!')
@@ -36,14 +37,14 @@ while (fwing_nmid is not None):
     time.sleep(5)
     fwing = api.user_following(u_id, rnk_token, max_id=fwing_nmid)
     fwing_list.append(np.sort([fwing['users'][idx]['username'] for idx in np.arange(len(fwing['users']))]))
-    fwing_nmid = fwing['next_max_id']
+    fwing_nmid = fwing.get('next_max_id')
 
 print('Parsing the followers list! Please be patient. There is a delay to prevent your account from getting flagged!')
 while (fwers_nmid is not None):
     time.sleep(5)
     fwers = api.user_followers(u_id, rnk_token, max_id=fwers_nmid)
     fwers_list.append(np.sort([fwers['users'][idx]['username'] for idx in np.arange(len(fwers['users']))]))
-    fwers_nmid = fwers['next_max_id']
+    fwers_nmid = fwers.get('next_max_id')
     
 fwers_list_flat = [j for sub in fwers_list for j in sub]
 fwing_list_flat = [j for sub in fwing_list for j in sub]
