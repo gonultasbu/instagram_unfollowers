@@ -30,7 +30,7 @@ fwers_list = []
 fwing_list.append(np.sort([fwing['users'][idx]['username'] for idx in np.arange(len(fwing['users']))]))
 fwers_list.append(np.sort([fwers['users'][idx]['username'] for idx in np.arange(len(fwers['users']))]))
 fwing_nmid = fwing.get('next_max_id')
-fwers_nmid = fwers['next_max_id']
+fwers_nmid = fwers.get('next_max_id')
 
 print('Parsing the following list! Please be patient. There is a delay to prevent your account from getting flagged!')
 while (fwing_nmid is not None):
