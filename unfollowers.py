@@ -12,7 +12,7 @@ def list_diff(li1, li2):
 print("\n \nIMPORTANT DISCLAIMER: DO NOT USE THIS TOOL TOO FREQUENTLY (MORE THAN SEVERAL TIMES IN A MINUTE), YOUR ACCOUNT MIGHT GET FLAGGED! \n \n ")
 
 USER_NAME = input("What is your instagram username? \n")
-PASSWORD = getpass.getpass(prompt='What is your insbtagram password? (Your input might not appear on console, just type and press enter.) \n')
+PASSWORD = getpass.getpass(prompt='What is your instagram password? (Your input might not appear on console, just type and press enter.) \n')
 
 try: 
     api = Client(USER_NAME, PASSWORD)
